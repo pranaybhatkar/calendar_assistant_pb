@@ -1,0 +1,111 @@
+{
+  "name": "MCP Server",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "0d700126-82c6-4bd9-93b4-25e7271851af"
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpTrigger",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "7414a8c6-9380-4be4-8c7c-8516efa9dbe9",
+      "name": "MCP Server Trigger",
+      "webhookId": "0d700126-82c6-4bd9-93b4-25e7271851af"
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Use this tool to Send a message in Gmail. All you send is the to email address, subject and message body to send this email.",
+        "sendTo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('To', ``, 'string') }}",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.2,
+      "position": [
+        96,
+        208
+      ],
+      "id": "7bd0542c-baea-44bc-bcd0-5b95421b8096",
+      "name": "Send a message in Gmail",
+      "webhookId": "9fdf4372-762a-4ac9-9dce-35fda5d395cc",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ebrCsHNnyKXtnyqJ",
+          "name": "Gmail account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Use this tool to update the Google document. You need to pass just the content to be updated. ",
+        "operation": "update",
+        "documentURL": "https://docs.google.com/document/d/1egIZiuhb-KHRp-gj7hxXUWpa8eTblseVfk02rncZ2-s/edit?tab=t.0",
+        "actionsUi": {
+          "actionFields": [
+            {
+              "action": "insert",
+              "text": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('actionFields0_Text', ``, 'string') }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.googleDocsTool",
+      "typeVersion": 2,
+      "position": [
+        256,
+        208
+      ],
+      "id": "c88cfa66-3cf8-4968-a97d-b14a28243fde",
+      "name": "Update a document in Google Docs",
+      "credentials": {
+        "googleDocsOAuth2Api": {
+          "id": "JVqmWHuH7Dal3raP",
+          "name": "Google Docs account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Send a message in Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update a document in Google Docs": {
+      "ai_tool": [
+        [
+          {
+            "node": "MCP Server Trigger",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "287f8a46-236e-45af-9a6f-1711bd0ba987",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "6089fa415c55765801aa79a5bee2005464d7cf177f40340b0b199ddff0a06d13"
+  },
+  "id": "ewOpEOkYzO93CkV6",
+  "tags": []
+}
